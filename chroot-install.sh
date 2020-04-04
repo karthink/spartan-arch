@@ -57,11 +57,16 @@ echo 'vboxsf' > /etc/modules-load.d/vboxsf.conf
 
 # install dev envt.
 echo 'Installing dev environment'
-pacman -S --noconfirm git emacs zsh nodejs npm vim wget perl make gcc grep tmux i3 dmenu
-pacman -S --noconfirm chromium curl autojump openssh sudo mlocate the_silver_searcher
-pacman -S --noconfirm ttf-hack lxterminal nitrogen ntp dhclient keychain
-pacman -S --noconfirm python-pip go go-tools pkg-config
-npm install -g jscs jshint bower grunt
+# pacman -S --noconfirm git emacs zsh nodejs npm vim wget perl make gcc grep tmux i3 dmenu
+# pacman -S --noconfirm chromium curl autojump openssh sudo mlocate the_silver_searcher
+# pacman -S --noconfirm ttf-hack lxterminal nitrogen ntp dhclient keychain
+# pacman -S --noconfirm python-pip go go-tools pkg-config
+pacman -S --noconfirm vim wget perl make gcc grep tmux i3
+pacman -S --noconfirm curl autojump openssh sudo mlocate the_silver_searcher
+pacman -S --noconfirm ttf-hack feh dhclient keychain rxvt-unicode
+pacman -S --noconfirm python-pip pkg-config
+pacman -S --noconfirm --needed bash
+# npm install -g jscs jshint bower grunt
 pip install pipenv bpython ipython
 
 # install req for pacaur & cower
@@ -72,13 +77,13 @@ pacman -S --noconfirm expac fakeroot yajl openssl
 echo 'Setting up user'
 read -t 1 -n 1000000 discard      # discard previous input
 echo 'root:'$password | chpasswd
-useradd -m -G wheel -s /bin/zsh $user
-touch /home/$user/.zshrc
-chown $user:$user /home/$user/.zshrc
-mkdir /home/$user/org
-chown $user:$user /home/$user/org
-mkdir /home/$user/workspace
-chown $user:$user /home/$user/workspace
+useradd -m -G wheel -s /bin/bash $user
+touch /home/$user/.bashrc
+chown $user:$user /home/$user/.bashrc
+mkdir /home/$user/Documents
+chown $user:$user /home/$user/Documents
+# mkdir /home/$user/workspace
+# chown $user:$user /home/$user/workspace
 echo $user:$password | chpasswd
 echo '%wheel ALL=(ALL) ALL' >> /etc/sudoers
 
@@ -86,7 +91,7 @@ echo '%wheel ALL=(ALL) ALL' >> /etc/sudoers
 systemctl enable ntpdate.service
 
 # preparing post install
-wget https://raw.githubusercontent.com/abrochard/spartan-arch/master/post-install.sh -O /home/$user/post-install.sh
+wget https://raw.githubusercontent.com/karthink/spartan-arch/master/post-install.sh -O /home/$user/post-install.sh
 chown $user:$user /home/$user/post-install.sh
 
 echo 'Done'
