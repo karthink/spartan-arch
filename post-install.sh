@@ -62,7 +62,8 @@ makepkg --clean
 # Install my build of st
 cd ~/Downloads
 mkdir st
-git clone https://raw.githubusercontent.com/karthink/st/extras/PKGBUILD
+cd st
+wget https://raw.githubusercontent.com/karthink/st/extras/PKGBUILD -O PKGBUILD
 makepkg PKGBUILD
 read -t 1 -n 1000000 discard      # discard previous input
 sudo pacman -U st-*.pkg.tar.xz --noconfirm
