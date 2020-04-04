@@ -55,23 +55,9 @@ pacman -S --noconfirm virtualbox-guest-modules-arch virtualbox-guest-utils
 # vbox modules
 echo 'vboxsf' > /etc/modules-load.d/vboxsf.conf
 
-# install dev envt.
-echo 'Installing dev environment'
-# pacman -S --noconfirm git emacs zsh nodejs npm vim wget perl make gcc grep tmux i3 dmenu
-# pacman -S --noconfirm chromium curl autojump openssh sudo mlocate the_silver_searcher
-# pacman -S --noconfirm ttf-hack lxterminal nitrogen ntp dhclient keychain
-# pacman -S --noconfirm python-pip go go-tools pkg-config
-pacman -S --noconfirm vim wget perl make gcc grep tmux i3
-pacman -S --noconfirm curl autojump openssh sudo mlocate the_silver_searcher
-pacman -S --noconfirm ttf-hack feh dhclient keychain rxvt-unicode
-pacman -S --noconfirm python-pip pkg-config
-pacman -S --noconfirm --needed bash
-# npm install -g jscs jshint bower grunt
-pip install pipenv bpython ipython
-
 # install req for pacaur & cower
-echo 'Installing dependencies'
-pacman -S --noconfirm expac fakeroot yajl openssl
+# echo 'Installing dependencies'
+# pacman -S --noconfirm expac fakeroot yajl openssl
 
 # user mgmt
 echo 'Setting up user'
