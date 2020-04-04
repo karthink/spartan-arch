@@ -2,25 +2,10 @@
 
 # Run install.sh first or this will fail due to missing dependencies
 
-# install dev envt.
-echo 'Installing dev environment'
-# pacman -S --noconfirm git emacs zsh nodejs npm vim wget perl make gcc grep tmux i3 dmenu
-# pacman -S --noconfirm chromium curl autojump openssh sudo mlocate the_silver_searcher
-# pacman -S --noconfirm ttf-hack lxterminal nitrogen ntp dhclient keychain
-# pacman -S --noconfirm python-pip go go-tools pkg-config
-pacman -S --noconfirm vim wget perl make gcc grep tmux i3
-pacman -S --noconfirm curl autojump openssh sudo mlocate the_silver_searcher
-pacman -S --noconfirm ttf-hack feh dhclient keychain rxvt-unicode
-pacman -S --noconfirm python-pip pkg-config
-pacman -S --noconfirm --needed bash
-# npm install -g jscs jshint bower grunt
-pip install pipenv bpython ipython
-
 # network on boot?
 read -t 1 -n 1000000 discard      # discard previous input
 sudo dhclient enp0s3
 echo 'Waiting for internet connection'
-
 
 # xinitrc
 cd
@@ -35,24 +20,6 @@ echo 'exec i3 &' >> ~/.xinitrc
 # git clone https://github.com/abrochard/emacs-config.git
 # echo '(load-file "~/emacs-config/bootstrap.el")' > ~/.emacs
 # echo '(server-start)' >> ~/.emacs
-
-## cower & pacaur
-# mkdir Downloads
-# cd ~/Downloads
-# wget https://aur.archlinux.org/cgit/aur.git/snapshot/cower-git.tar.gz
-# tar -xvf cower-git.tar.gz
-# cd cower-git
-# makepkg PKGBUILD
-# read -t 1 -n 1000000 discard      # discard previous input
-# sudo pacman -U cower-*.pkg.tar.xz --noconfirm
-
-# cd ~/Downloads
-# wget https://aur.archlinux.org/cgit/aur.git/snapshot/pacaur.tar.gz
-# tar -xvf pacaur.tar.gz
-# cd pacaur
-# makepkg PKGBUILD
-# read -t 1 -n 1000000 discard      # discard previous input
-# sudo pacman -U pacaur-*.pkg.tar.xz --noconfirm
 
 # git first time setup
 git config --global user.name $(whoami)

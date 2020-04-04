@@ -7,7 +7,7 @@ password=$2
 fast=$3
 
 # setup mirrors
-if [ "$fast" -eq "1"]
+if [ "$fast" -eq "1" ]
 then
     echo 'Setting up mirrors'
     cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup
@@ -46,18 +46,32 @@ grub-mkconfig -o /boot/grub/grub.cfg
 
 # install Xorg
 echo 'Installing Xorg'
-pacman -S --noconfirm xorg xorg-xinit xterm
+pacman -S --needed --noconfirm xorg xorg-xinit xterm
 
 # install virtualbox guest modules
 echo 'Installing VB-guest-modules'
-pacman -S --noconfirm virtualbox-guest-modules-arch virtualbox-guest-utils
+pacman -S --needed --noconfirm virtualbox-guest-modules-arch virtualbox-guest-utils
 
 # vbox modules
 echo 'vboxsf' > /etc/modules-load.d/vboxsf.conf
 
-# install req for pacaur & cower
-# echo 'Installing dependencies'
-# pacman -S --noconfirm expac fakeroot yajl openssl
+# install dev envt.
+echo 'Installing dev environment'
+# pacman -S --noconfirm git emacs zsh nodejs npm vim wget perl make gcc grep tmux i3 dmenu
+# pacman -S --noconfirm chromium curl autojump openssh sudo mlocate the_silver_searcher
+# pacman -S --noconfirm ttf-hack lxterminal nitrogen ntp dhclient keychain
+# pacman -S --noconfirm python-pip go go-tools pkg-config
+pacman -S --needed --noconfirm git vim wget perl make gcc grep tmux i3
+pacman -S --needed --noconfirm curl autojump openssh sudo mlocate the_silver_searcher
+pacman -S --needed --noconfirm ttf-hack feh dhclient keychain rxvt-unicode dhcpcd
+pacman -S --needed --noconfirm python-pip pkg-config
+pacman -S --needed --noconfirm --needed bash
+# npm install -g jscs jshint bower grunt
+pip install pipenv bpython ipython
+
+# Install dependencies for trizen
+pacman -S --needed --noconfirm pacutils perl-libwww perl-term-ui perl-json perl-data-dump 
+pacman -S --needed --noconfirm perl-lwp-protocol-https perl-term-readline-gnu
 
 # user mgmt
 echo 'Setting up user'
